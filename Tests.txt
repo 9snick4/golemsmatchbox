@@ -1,0 +1,54 @@
+Test da implementare:
+
+--Choosing Card & orientation
+
+GIVEN card on table
+AND player1 wands to purchase this card
+AND player1 has the required gems
+WHEN choosing card
+THEN card is removed from table
+
+GIVEN card + orientation + user
+AND user has resources
+AND card is golem type
+AND orientation is "summon"
+WHEN choosing card orientation
+THEN card is saved to user with correct orientation
+AND go to discard resources phase
+
+GIVEN card + orientation + user
+AND card is golem type
+AND orientation is "resource"
+AND card chosen has 1 resource type
+AND card chosen shares 1 resource type with a user pile
+WHEN choosing card orientation
+THEN card is saved to user with correct orientation and placed on top of relative resource pile
+AND go to next turn
+
+GIVEN card + orientation + user
+AND card is golem type
+AND orientation is "resource"
+AND card chosen has 1 resource type
+AND card chosen DOES NOT share any resource type with a user pile
+WHEN choosing card orientation
+THEN card is saved to user with correct orientation and placed on top of NEW resource pile
+AND go to next turn
+
+GIVEN card + orientation + user
+AND card is golem type
+AND orientation is "resource"
+AND card chosen has 2 resource types
+AND card chosen DOES NOT share any resource type with a user pile
+WHEN choosing card orientation
+THEN action is denied: you can play a card with two resources only when you have a pile with a shared resource type 
+
+GIVEN card + orientation + user
+AND card is golem type
+AND orientation is "resource"
+AND card chosen has 2 resource types
+AND card chosen shares a resource type with a user pile
+WHEN choosing card orientation
+THEN go to "choose pile" 
+
+
+

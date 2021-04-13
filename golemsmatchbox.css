@@ -1,0 +1,334 @@
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * GolemsMatchbox implementation : © Stefano Nicotra 9stefanonicotra4@gmail.com
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * golemsmatchbox.css
+ *
+ * GolemsMatchbox stylesheet
+ *
+ */
+
+/*
+    This is the CSS stylesheet of your game User Interface.
+    
+    Styles defined on this file will be applied to the HTML elements you define in your
+    HTML template (golemsmatchbox_golemsmatchbox.tpl), and to HTML elements you create dynamically
+    (in golemsmatchbox.js).
+    
+    Usually, you are using CSS to:
+    
+    1°) define the overall layout of your game
+        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
+
+    2°) create your CSS-sprites:
+        All images of your games should be gathered into a small number of image files. Then, using
+        background-image and background-position CSS properties, you create HTML blocks that can 
+        display these images correctly (see example below).
+    
+    3°) ... anything else:
+        It is really easy to add and remove CSS classes dynamically from your Javascript with
+        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
+        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
+        very often, using CSS classes for the logic of your user interface allow you to do complex
+        thing easily.
+        
+        
+     Note: on the production platform, this file will be compressed and comments will be removed.
+           Consequently, don't hesitate to put as many comments as necessary.
+*/
+
+
+/* Note: you must not use any @import directive */
+
+
+/********* You can start writing your CSS below this line: **********/
+.gem_0 {
+position: absolute;
+width: 36px;
+height: 36px;
+background-image: url('img/golems_gem_01.png'); 
+}
+
+.gem_1 {
+position: absolute;
+width: 36px;
+height: 36px;
+background-image: url('img/golems_gem_02.png'); 
+}
+
+.gem_2 {
+position: absolute;
+width: 36px;
+height: 36px;
+background-image: url('img/golems_gem_03.png'); 
+}
+
+.gem_counter {
+    position:absolute;
+    left:40px;
+    top:
+}
+
+.hand_icon {
+    position:absolute;
+    left:50px;
+}
+
+.hand_counter {
+    position:absolute;
+    left:70px;
+}
+
+.playerinfo {
+    height: 50px;
+}
+.card {
+    position: absolute;
+    width: 96px;
+    height: 148px;
+    background-image: url('img/all_cards.png'); 
+}
+
+.facedown_card {
+    position: absolute;
+    width: 96px;
+    height: 148px;
+    background-image: url('img/all_cards.png'); 
+    background-position: -672px -592px;
+}
+
+
+.card_shadow {
+    filter: drop-shadow(1px 1px 1px #333);
+    -webkit-filter: drop-shadow(1px 1px 1px #333);
+}
+
+.deck_shadow {
+    filter: drop-shadow(3px 3px 3px #333);
+    -webkit-filter: drop-shadow(3px 3px 3px #333);
+}
+
+.personal_area {
+    height: 150px;
+}
+
+.personal_hand {
+    height: 180px;
+}
+
+.shared_area {
+    display: inline-block;
+    position: relative;
+    width: 900px;
+    height: 400px;
+    text-align: center;
+}
+
+.selectable { 
+    box-shadow: 0px 0px 0px 2px yellow;
+}
+
+.card.selectable:hover::before {
+    position: absolute;
+    background: chartreuse;
+    left:0;
+    top:0;
+    height: 50%;
+    width: 100%;
+    content: ' ';
+    cursor: pointer;
+}
+
+.card.selectable:hover::after {
+    position: absolute;
+    background: red;
+    left:0;
+    bottom:0;
+    height: 50%;
+    width: 100%;
+    content: ' ';
+    cursor: pointer;
+}
+
+.grid {
+    display: inline-block;
+    width: 250px;
+    height:  168px;
+}
+
+#topleft_1 {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+#topleft_2 {
+    position: absolute;
+    left: 120px;
+    top: 10px;
+}
+
+#topleft_3 {
+    position: absolute;
+    left: 230px;
+    top: 10px;
+}
+
+#bottomleft_1 {
+    position: absolute;
+    left: 10px;
+    top: 170px;
+}
+
+#bottomleft_2 {
+    position: absolute;
+    left: 120px;
+    top: 170px;
+}
+
+#bottomleft_3 {
+    position: absolute;
+    left: 230px;
+    top: 170px;
+}
+
+#bank_gem_0 {
+    position:absolute;
+    left:300px;
+    top: 5px;
+}
+
+#bank_gem_2 {
+    position:absolute;
+    left:350px;
+    top: 5px;
+}
+
+#bank_gem_4 {
+    position:absolute;
+    left:400px;
+    top: 5px;
+}
+#bank_gem_6 {
+    position:absolute;
+    left:300px;
+    top: 45px;
+}
+
+#bank_gem_8 {
+    position:absolute;
+    left:350px;
+    top: 45px;
+}
+
+#bank_gem_10 {
+    position:absolute;
+    left:400px;
+    top: 45px;
+}
+
+#golem_deck {
+    position:absolute;
+    left: 350px;
+    top: 85px;
+}
+
+
+#bank_gem_1 {
+    position:absolute;
+    left:300px;
+    top: 240px;
+}
+
+#bank_gem_3 {
+    position:absolute;
+    left:350px;
+    top: 240px;
+}
+
+#bank_gem_5 {
+    position:absolute;
+    left:400px;
+    top: 240px;
+}
+#bank_gem_7 {
+    position:absolute;
+    left:300px;
+    top: 280px;
+}
+
+#bank_gem_9 {
+    position:absolute;
+    left:350px;
+    top: 280px;
+}
+
+#bank_gem_11 {
+    position:absolute;
+    left:400px;
+    top: 280px;
+}
+
+#topright_1 {
+    position: absolute;
+    left: 470px;
+    top: 10px;
+}
+
+#topright_2 {
+    position: absolute;
+    left: 580px;
+    top: 10px;
+}
+
+#topright_3 {
+    position: absolute;
+    left: 690px;
+    top: 10px;
+}
+
+#bottomright_1 {
+    position: absolute;
+    left: 470px;
+    top: 170px;
+}
+
+#bottomright_2 {
+    position: absolute;
+    left: 580px;
+    top: 170px;
+}
+
+#bottomright_3 {
+    position: absolute;
+    left: 690px;
+    top: 170px;
+}
+
+
+/*
+    Example of CSS sprites (a black token and a white token, 20x20px each, embedded in the same "tokens.png" 40x20px image):
+
+    .white_token {
+        background-image: url('img/tokens.png');
+        background-position: 0px 0px;
+    }
+    .black_token {
+        background-image: url('img/tokens.png');
+        background-position: -20px 0px;
+    }
+    .token {
+        width: 20px;
+        height: 20px;
+        background-repeat: none;
+    }
+*/
+
+
+
+
