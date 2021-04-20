@@ -182,7 +182,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -195,7 +195,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 0,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -208,7 +208,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 0,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -221,7 +221,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 0,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -234,7 +234,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 0,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -247,7 +247,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 0,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -285,8 +285,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -298,8 +298,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -312,7 +312,7 @@ $this->card_list = array (
     'blue' => 3,
     'green'=> 1,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -325,7 +325,7 @@ $this->card_list = array (
     'blue' => 3,
     'green'=> 2,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -338,7 +338,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 3,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -351,7 +351,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 1,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -364,7 +364,7 @@ $this->card_list = array (
     'blue' => 1,
     'green'=> 2,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -377,7 +377,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 2,
     'resource_type_1' => 2, //Blue
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -415,8 +415,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -428,8 +428,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -442,7 +442,7 @@ $this->card_list = array (
     'blue' => 1,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -455,7 +455,7 @@ $this->card_list = array (
     'blue' => 1,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -468,7 +468,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -481,7 +481,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -494,7 +494,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -507,7 +507,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -545,8 +545,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -558,8 +558,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -572,7 +572,7 @@ $this->card_list = array (
     'blue' => 3,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -585,7 +585,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 0,
     'resource_type_1' => 5, //Yellow
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -598,7 +598,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 1,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -611,7 +611,7 @@ $this->card_list = array (
     'blue' => 1,
     'green'=> 2,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -624,7 +624,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 3,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -637,7 +637,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 2,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
     
@@ -675,8 +675,8 @@ $this->card_list = array (
     'red' => 0,
     'blue' => 0,
     'green'=> 0,
-    'resource_type_1' => 0,
-    'resource_type_2' => 0,
+    'resource_type_1' => -1,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -689,7 +689,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 2,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -702,7 +702,7 @@ $this->card_list = array (
     'blue' => 3,
     'green'=> 0,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -715,7 +715,7 @@ $this->card_list = array (
     'blue' => 1,
     'green'=> 1,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -728,7 +728,7 @@ $this->card_list = array (
     'blue' => 2,
     'green'=> 0,
     'resource_type_1' => 4, //Red
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -741,7 +741,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 3,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -754,7 +754,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 2,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -780,7 +780,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 2,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -793,7 +793,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 1,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -806,7 +806,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 3,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -819,7 +819,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 3,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -832,7 +832,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 2,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 
@@ -845,7 +845,7 @@ $this->card_list = array (
     'blue' => 0,
     'green'=> 2,
     'resource_type_1' => 3, //Green
-    'resource_type_2' => 0,
+    'resource_type_2' => -1,
     'solo_only' => false,
     'starting_card' => false ),
 );
