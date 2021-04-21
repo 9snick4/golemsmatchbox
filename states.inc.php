@@ -67,6 +67,7 @@ $machinestates = array(
     		"name" => "chooseCard",
     		"description" => clienttranslate('${actplayer} must choose a card from the table or pass'),
     		"descriptionmyturn" => clienttranslate('${you} must choose a card from the table or pass'),
+            "args" => "argsChooseCard",
     		"type" => "activeplayer",
     		"possibleactions" => array( "chooseOrientation", "pass" ),
     		"transitions" => array( "chooseOrientation" => 3, "pass" => 4 )

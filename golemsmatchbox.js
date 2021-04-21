@@ -166,7 +166,15 @@ function (dojo, declare) {
                 
                 break;
            */
-           
+            case 'takeCard':
+                if(this.isCurrentPlayerActive())
+                {
+                    for(var id of args.args.selectableCards)
+                    {
+                        dojo.query('#faceupcard_'+id).addClass('selectable');
+                    }
+                }
+                break;
            
             case 'dummmy':
                 break;

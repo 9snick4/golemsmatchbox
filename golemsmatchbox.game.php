@@ -297,6 +297,73 @@ class GolemsMatchbox extends Table
         return false;
     }
 
+    //returns an array containing selectable card ids 
+    function getSelectableCards() 
+    {
+        $player_id = self::getActivePlayerId();
+
+        $sql = "SELECT player_id id, player_gems gems FROM player where player_id=".$player_id;
+        $player = self::getObjectFromDb($sql);
+
+        $player_gems = $player['gems'];
+        $selectable_cards = [];
+
+        //retrieve  type id
+        $type_rune = 0;
+        // $type_golem = 0:
+        // $type_gem = 0:
+        for($i = 1; $i <= count($this->card_types); $i++ ) 
+        {
+            $card_type = $this->card_types[$i];
+            switch($card_type['name'])
+            {
+                case 'Rune':
+                    $type_rune = $i;
+                    break;
+                // case 'Golem':
+                //     $type_golem = $i;
+                //     break;
+                // case 'Gem':
+                //     $type_gem = $i;
+                //     break;
+            }
+        }
+
+        foreach($this->public_locations as $location) 
+        {
+            $location_cards = $this->cards->getCardsInLocation($location);
+            $card_cost_or_income;
+            switch(count($location_cards)) 
+            {
+                case 3:
+                    $card_cost_or_income = 2;
+                    break;
+                case 2:
+                    $card_cost_or_income = 0;
+                    break;
+                case 1:
+                    $card_cost_or_income = -2;
+                    break;
+                default:
+                    throw new BgaVisibleSystemException ("The location has <1 or >3 cards");
+                    break;  
+            }
+            foreach($location_cards as $card) 
+            {
+                $card_material = $this->card_list[$card['type']];
+                if($card_material['card_type'] == $type_rune)
+                {
+                    $card_cost_or_income+=3;
+                }
+                if($player_gems >= $card_cost_or_income)
+                {
+                    array_push($selectable_cards,$card['id']);
+                }
+            }
+        }
+        return $selectable_cards;
+
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
@@ -435,7 +502,7 @@ class GolemsMatchbox extends Table
                 break;  
         }
 
-        //retrieve rune type id
+        //retrieve  type id
         $type_rune = 0;
         $type_golem = 0:
         $type_gem = 0:
@@ -604,6 +671,18 @@ class GolemsMatchbox extends Table
         );
     }    
     */
+    function argChooseCard()
+    {
+        // Get some values from the current game situation in database...
+    
+        // return values:
+        return array(
+            'selectable_cards' => $this->getSelectableCards(),
+            'variable2' => $value2,
+            ...
+        );
+    }    
+    
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state actions
