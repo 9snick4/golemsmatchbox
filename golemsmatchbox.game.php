@@ -243,7 +243,6 @@ class GolemsMatchbox extends Table
         $result['bottomleft'] = $this->cards->getCardsInLocation( 'bottomleft' );
         $result['bottomright'] = $this->cards->getCardsInLocation( 'bottomright' );
 
-
         $result['bank_gems'] = self::getGameStateValue( 'available_gems' );
         
         return $result;
@@ -276,8 +275,8 @@ class GolemsMatchbox extends Table
     */
     //receives a deck card and an array of strings (locations)
     //returns true if card has one of the location as his own
-    function isCardInLocations($card, $locations) {
-
+    function isCardInLocations($card, $locations) 
+    {
         //lets check if we are using a deck card
         if(!array_key_exists('location', $card))
         {
@@ -287,12 +286,16 @@ class GolemsMatchbox extends Table
         //if locations is not array, maybe is string
         if(!is_array($locations))
         {
-            $locations = array( $locations )
+            $x = $locations;
+            $locations =[];
+            array_push($locations, $x);
         }
         foreach($locations as $location)
         {
             if( !strcmp($card['location'], $location ) )
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -504,8 +507,8 @@ class GolemsMatchbox extends Table
 
         //retrieve  type id
         $type_rune = 0;
-        $type_golem = 0:
-        $type_gem = 0:
+        $type_golem = 0;
+        $type_gem = 0;
         for($i = 1; $i <= count($this->card_types); $i++ ) 
         {
             $card_type = $this->card_types[$i];
@@ -558,7 +561,7 @@ class GolemsMatchbox extends Table
             $total_resource_cards = 0;
 
             $blue_player_cards = count(array_filter( $this->cards->getCardsInLocation('blue'), function($val, $key) {
-                return  $player_id ==  substr($val['location_arg'] 0, -2);
+                return  $player_id ==  substr($val['location_arg'], 0, -2);
             }, ARRAY_FILTER_USE_BOTH ));
             if($card_material['blue'] > $blue_player_cards)
             {
@@ -567,7 +570,7 @@ class GolemsMatchbox extends Table
             $total_resource_cards += $blue_player_cards;
 
             $green_player_cards = count(array_filter( $this->cards->getCardsInLocation('green'), function($val, $key) {
-                return  $player_id ==  substr($val['location_arg'] 0, -2);
+                return  $player_id ==  substr($val['location_arg'], 0, -2);
             }, ARRAY_FILTER_USE_BOTH ));
             if($card_material['green'] > $green_player_cards)
             {
@@ -576,16 +579,16 @@ class GolemsMatchbox extends Table
             $total_resource_cards += $green_player_cards;
 
             $red_player_cards = count(array_filter( $this->cards->getCardsInLocation('red'), function($val, $key) {
-                return  $player_id ==  substr($val['location_arg'] 0, -2);
+                return  $player_id ==  substr($val['location_arg'], 0, -2);
             }, ARRAY_FILTER_USE_BOTH ));
             if($card_material['red'] > $red_player_cards)
             {
                 throw new BgaUserException( self::_("You do not have enough Red resources to take this card") );
             }
-            $total_resource_cards += $red_player_cards
+            $total_resource_cards += $red_player_cards;
 
             $yellow_player_cards = count(array_filter( $this->cards->getCardsInLocation('yellow'), function($val, $key) {
-                return  $player_id ==  substr($val['location_arg'] 0, -2);
+                return  $player_id ==  substr($val['location_arg'], 0, -2);
             }, ARRAY_FILTER_USE_BOTH ));
             if($card_material['yellow'] > $yellow_player_cards)
             {
@@ -671,15 +674,13 @@ class GolemsMatchbox extends Table
         );
     }    
     */
-    function argChooseCard()
+    function argsChooseCard()
     {
         // Get some values from the current game situation in database...
     
         // return values:
         return array(
-            'selectable_cards' => $this->getSelectableCards(),
-            'variable2' => $value2,
-            ...
+            'selectable_cards' => $this->getSelectableCards()
         );
     }    
     

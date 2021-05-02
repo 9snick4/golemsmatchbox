@@ -43,13 +43,13 @@
   	public function takeCard() {
       self::setAjaxMode();
       
-      $card_id = self::getArg("card_id", AT_alphanum, true);
-      $location_destination = self::getArg("location_destination", AT_alphanum, true);
+    //   $card_id = self::getArg("card_id", AT_alphanum, true);
+    //   $location_destination = self::getArg("location_destination", AT_alphanum, true);
 
-      $card_cost_or_income = $this->game->canTakeCard($card_id, $location_destination);
-      $this->game->takeCard($card_id, $location_destination, $card_cost_or_income);
+    //   $card_cost_or_income = $this->game->canTakeCard($card_id, $location_destination);
+    //   $this->game->takeCard($card_id, $location_destination, $card_cost_or_income);
 
-      self::ajaxResponse();
+    //   self::ajaxResponse();
   }
 
     /*

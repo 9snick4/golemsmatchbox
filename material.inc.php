@@ -2,7 +2,7 @@
 /**
  *------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * GolemsMatchbox implementation : © <Your name here> <Your email address here>
+ * GolemsMatchbox implementation : © Stefano Nicotra 9stefanonicotra4@gmail.com
  * 
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -149,28 +149,19 @@ $this->public_locations = array (
   "topright",
   "bottomleft",
   "bottomright"
-)
+);
 
 $this->player_locations = array (
-  "rune" => array(3)  //Rune
-   ),
-   "blue" =>  array(1,3)  //No Gems
-   ),
-   "green" => array(1,3)  //No Gems
-    ),
-   "red"=>  array(1,3)  //No Gems
-    ),
-   "yellow"=> array(1,3)  //No Gems
-    ),
-   "golem"=>  array(1)  //Golem
-    ),
-   "golemdiscard"=> array(-1) //Special
-    ),
-   "gemdust"=> array(2) //Gem
-    ),
-   "gems"=> array(2)  //Gem
-    ),
-)
+    "rune" => array(3),  //Rune
+    "blue" =>  array(1,3),  //No Gems
+    "green" => array(1,3),  //No Gems
+    "red"=>  array(1,3),  //No Gems
+    "yellow"=> array(1,3),  //No Gems
+    "golem"=>  array(1),  //Golem
+    "golemdiscard"=> array(-1), //Special
+    "gemdust"=> array(2), //Gem
+    "gems"=> array(2)  //Gem
+  );
 
 $this->card_list = array (
   0 => array (
