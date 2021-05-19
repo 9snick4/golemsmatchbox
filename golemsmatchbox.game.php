@@ -244,6 +244,11 @@ class GolemsMatchbox extends Table
         $result['bottomright'] = $this->cards->getCardsInLocation( 'bottomright' );
 
         $result['bank_gems'] = self::getGameStateValue( 'available_gems' );
+
+        //constants
+        $result['card_types'] = $this->card_types;
+        $result['card_list'] = $this->card_list;
+        $result['golem_types'] = $this->golem_types;
         
         return $result;
     }
@@ -353,14 +358,15 @@ class GolemsMatchbox extends Table
             }
             foreach($location_cards as $card) 
             {
-                $card_material = $this->card_list[$card['type']];
-                if($card_material['card_type'] == $type_rune)
-                {
-                    $card_cost_or_income+=3;
-                }
+                //this was supposed to increase cost of runes, but it applies only if you take them as runes and not as resources...
+                // $card_material = $this->card_list[$card['type']];
+                // if($card_material['card_type'] == $type_rune)
+                // {
+                //     $card_cost_or_income+=3;
+                // }
                 if($player_gems >= $card_cost_or_income)
                 {
-                    array_push($selectable_cards,$card['id']);
+                    array_push($selectable_cards,$card);
                 }
             }
         }
@@ -408,9 +414,10 @@ class GolemsMatchbox extends Table
         //get card
         $player_id = self::getActivePlayerId();
         $card_order = count( $this->cards->getCardsInLocation( strtolower( $location_destination ) ) ) + 1;
-        $location_arg = "$player_id|$card_order";
-        $this->cards->moveCard( $card_id , $location_destination, $location_arg );
-
+        $location_arg = $player_id;
+        // $this->cards->moveCard( $card_id , $location_destination, $location_arg );
+        $sql = "UPDATE card SET card_location='$location_destination', card_location_arg=$location_arg, card_location_position=$card_order WHERE card_id='$card_id' ";
+        self::DbQuery( $sql );
         //pay or get gems
         
         $sql = "SELECT player_id id, player_gems gems FROM player where player_id=".$player_id;
@@ -445,12 +452,11 @@ class GolemsMatchbox extends Table
 
         $sql = "SELECT player_id id, player_gems gems FROM player where player_id=".$player_id;
         $player = self::getObjectFromDb($sql);
-
         $card = $this->cards->getCard($card_id);
         $card_material = $this->card_list[$card['type']];
 
         //is card in a public locations?
-        if(!isCardInLocations($card, $this->public_locations)) 
+        if(!$this->isCardInLocations($card, $this->public_locations)) 
         {
             throw new BgaUserException( self::_("The 'selected' card is not available... What where you thinking, cheater? :P") );
 
@@ -460,6 +466,8 @@ class GolemsMatchbox extends Table
         $valid_location = false;
         foreach($this->player_locations as $location_name => $location)
         {
+            self::dump("location_Destination", $location_destination);
+
             //if we are in the right location...
             if(!strcasecmp($location_name,$location_destination))
             {
@@ -597,7 +605,7 @@ class GolemsMatchbox extends Table
             $total_resource_cards += $yellow_player_cards;
             
            
-            if($card_material['total_cost'] > $yellow_player_cards)
+            if($card_material['total_cost'] > $total_resource_cards)
             {
                 throw new BgaUserException( self::_("You do not have enough resources to take this card") );
             }
@@ -608,39 +616,51 @@ class GolemsMatchbox extends Table
             $card_compatble_with_location = true;
         }
         //if you're trying to get a resource, are you putting the card in the right resource group?
+        $destination_resource = false;
         if($card_material['card_type'] != $type_gem) 
         {
             //verify if the card is going in a resource group, and if the resource is compatible with that card
-            if(!strcasecmp($location_destination, 'Blue') && $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 2 && $card_material['resource_type_2'] != 2)
+            if(!strcasecmp($location_destination, 'Blue') )
             {
-                throw new BgaUserException( self::_("This card cannot be placed as a resource in the Blue resource group") );
-
+                if($card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 2 && $card_material['resource_type_2'] != 2)
+                {
+                    throw new BgaUserException( self::_("This card cannot be placed as a resource in the Blue resource group") );
+                }
+                $destination_resource = true;
             }
-            if(!strcasecmp($location_destination, 'Green') && $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 3 && $card_material['resource_type_2'] != 3)
+            else if(!strcasecmp($location_destination, 'Green') )
             {
-                throw new BgaUserException( self::_("This card cannot be placed as a resource in the Green resource group") );
-
+                if( $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 3 && $card_material['resource_type_2'] != 3)
+                {
+                    throw new BgaUserException( self::_("This card cannot be placed as a resource in the Green resource group") );
+                }
+                $destination_resource = true;
             }
-            if(!strcasecmp($location_destination, 'Red') && $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 4 && $card_material['resource_type_2'] != 4)
+            else if(!strcasecmp($location_destination, 'Red') )
             {
-                throw new BgaUserException( self::_("This card cannot be placed as a resource in the Red resource group") );
-
+                if( $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 4 && $card_material['resource_type_2'] != 4)
+                {
+                    throw new BgaUserException( self::_("This card cannot be placed as a resource in the Red resource group") );
+                }
+                $destination_resource = true;
             }
-            if(!strcasecmp($location_destination, 'Yellow') && $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 5 && $card_material['resource_type_2'] != 5)
+            else if(!strcasecmp($location_destination, 'Yellow') )
             {
-                throw new BgaUserException( self::_("This card cannot be placed as a resource in the Yellow resource group") );
-
+                if( $card_material['resource_type_1'] != 0 && $card_material['resource_type_1'] != 5 && $card_material['resource_type_2'] != 5)
+                {
+                    throw new BgaUserException( self::_("This card cannot be placed as a resource in the Yellow resource group") );
+                }
+                $destination_resource = true;
             }
-            $card_compatble_with_location == true;
+            $card_compatble_with_location = true;
         }
 
         if(!$card_compatble_with_location)
         {
             throw new BgaUserException( self::_("The selected card orientation is not compatible with the location chosen") );
-
         }
         //if you're trying to get a double resource, or a wild resource, you need to have cards where you're putting it 
-        if(($card_material['resource_type_2'] != 0 || $card_material['resource_type_1'] == 0) && count($this->cards->getCardsInLocation($location_destination) <= 0)) 
+        if($destination_resource && ($card_material['resource_type_2'] >= 0 || $card_material['resource_type_1'] == 0) && count($this->cards->getCardsInLocation($location_destination))<= 0) 
         {
             throw new BgaUserException( self::_("The selected card orientation requires at least one card already placed in the destination location"));
         }

@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `card` (
   card_type varchar(30) NOT NULL,
   card_type_arg int(11) NOT NULL,
   card_location varchar(30) NOT NULL,
-  card_location_arg int(11) NOT NULL
+  card_location_arg int(11) NOT NULL,
+  card_location_position int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT = 1;
 

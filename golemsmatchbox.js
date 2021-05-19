@@ -33,7 +33,10 @@ function (dojo, declare) {
             this.cardwidth = 96;
             this.cardheight = 148;
             this.imagesPerRow = 10;
-
+            this.selectable_cards;
+            this.card_types;
+            this.card_list;
+            this.golem_types;
         },
         
         /*
@@ -53,6 +56,11 @@ function (dojo, declare) {
         {
             console.log( "Starting game setup" );
             
+            this.selectable_cards = new Array();
+            this.card_types = gamedatas.card_types;
+            this.card_list = gamedatas.card_list;
+            this.golem_types = gamedatas.golem_types;
+
             // Setting up player boards
             for( var player_id in gamedatas.players )
             {
@@ -153,7 +161,6 @@ function (dojo, declare) {
         onEnteringState: function( stateName, args )
         {
             console.log( 'Entering state: '+stateName );
-            
             switch( stateName )
             {
             
@@ -166,12 +173,13 @@ function (dojo, declare) {
                 
                 break;
            */
-            case 'takeCard':
+            case 'chooseCard':
                 if(this.isCurrentPlayerActive())
                 {
-                    for(var id of args.args.selectableCards)
+                    for(var card of args.args.selectable_cards)
                     {
-                        dojo.query('#faceupcard_'+id).addClass('selectable');
+                        this.selectable_cards.push(card);
+                        dojo.query('#faceupcard_'+card.id).addClass('selectable');
                     }
                 }
                 break;
@@ -237,17 +245,34 @@ function (dojo, declare) {
         onFaceupCard:function(event)
         {
             
-            debugger;
             dojo.stopEvent(event);
             if(this.isCurrentPlayerActive()) {
                 if(event.currentTarget.classList.contains('selectable')) {
-
                     // Discarding cards
-                    if(this.gamedatas.gamestate.name == 'discard_exceeding_cards') {
-                        if(this.checkAction("discardCard")) {
-                            this.ajaxcall('/fifteendays/fifteendays/discardCard.html', {
+                    if(this.gamedatas.gamestate.name == 'chooseCard') {
+                        if(this.checkAction("takeCard")) {
+                            //determine location destination through card type and orientation choice
+                            var card = this.selectable_cards.find(sel_card => sel_card.id == event.currentTarget.id.substr(11));
+                            var orientation = event.offsetY >= 74 ? "bottom":"top";
+                            var card_material = this.card_list[card.type];
+                            var type = this.card_types[card_material.card_type];
+                            var location_destination = type[orientation];
+                            //if resource, we need to discover where as a resource... 
+                            if(location_destination == 'resource') {
+                                //TODO
+                                //if rune, we first check for available spots
+                                //if multiple spots, he needs to choose
+
+                                //if golem, easy peasy, color of card is location destination
+                                if(type["name"] == "Golem") {
+                                    var sub_type = card_material.card_subtype;
+                                    location_destination = this.golem_types[sub_type];
+                                }
+                            }
+                            this.ajaxcall('/golemsmatchbox/golemsmatchbox/takeCard.html', {
                                     lock:true,
-                                    card_id:event.currentTarget.id
+                                    card_id:event.currentTarget.id.substr(11),
+                                    location_destination:location_destination
                                 },this, function( result ) {
                                 }, function( is_error ) { } );
                         }
