@@ -437,8 +437,8 @@ function (dojo, declare) {
         */
         setupNotifications: function()
         {
-            console.log( 'notifications subscriptions setup' );
-            
+            dojo.subscribe('cardTaken', this, "notif_cardTaken");
+
             // TODO: here, associate your game notifications with local methods
             
             // Example 1: standard notification handling
@@ -468,5 +468,20 @@ function (dojo, declare) {
         },    
         
         */
+       notif_cardTaken: function(notif) {
+
+           var card_id = notif.args.card_id;
+           var location_destination = notif.args.location_destination;
+           var player_id = notif.args.player_id;
+            var card = {
+                id :card_id
+            };
+
+            //trovare origine di carta
+            var origin = 
+            var target = location_destination;
+           moveCard(card,origin,target)
+
+       }
    });             
 });

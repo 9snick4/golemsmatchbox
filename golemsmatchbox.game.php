@@ -427,10 +427,18 @@ class GolemsMatchbox extends Table
         $sql = "UPDATE player SET player_gems = $gems WHERE player_id=".$player_id;
         self::dbQuery($sql);
 
-        $game_gems = self::getGameStateValue('available_gems');
-        $game_gems += $card_cost_or_income;
-        self::setGameStateValue('available_gems' , $game_gems);
+        // $game_gems = self::getGameStateValue('available_gems');
+        // $game_gems += $card_cost_or_income;
+        // self::setGameStateValue('available_gems' , $game_gems);
 
+
+        self::notifyAllPlayers( "cardTaken", clienttranslate( '${player_name} takes a card' ), array(
+            'player_id' => $player_id,
+            'player_name' => self::getActivePlayerName(),
+            'card_id' => $card_id,
+            'player_gems' => $gems,
+            'location_destination' => $location_destination
+        ) );
         //Todo NEXT STATE
     }   
     //////////////////////////////////////////////////////////////////////////////
