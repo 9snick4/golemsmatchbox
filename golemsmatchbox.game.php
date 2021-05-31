@@ -437,7 +437,8 @@ class GolemsMatchbox extends Table
             'player_name' => self::getActivePlayerName(),
             'card_id' => $card_id,
             'player_gems' => $gems,
-            'location_destination' => $location_destination
+            'location_destination' => $location_destination,
+            'index' => $card_order
         ) );
         //Todo NEXT STATE
     }   

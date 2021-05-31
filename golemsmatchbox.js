@@ -139,7 +139,7 @@ function (dojo, declare) {
             //     }
             // }
 
-            
+            this.setupNotifications();
 
             
             // Setup game notifications to handle (see "setupNotifications" method below)
@@ -263,9 +263,9 @@ function (dojo, declare) {
                                 //if rune, we first check for available spots
                                 //if multiple spots, he needs to choose
 
-                                //if golem, easy peasy, color of card is location destination
+                                //if golem, easy peasy, color of resource is location destination
                                 if(type["name"] == "Golem") {
-                                    var sub_type = card_material.card_subtype;
+                                    var sub_type = card_material.resource_type_1;
                                     location_destination = this.golem_types[sub_type];
                                 }
                             }
@@ -473,14 +473,22 @@ function (dojo, declare) {
            var card_id = notif.args.card_id;
            var location_destination = notif.args.location_destination;
            var player_id = notif.args.player_id;
+           var index = notif.args.index;
             var card = {
                 id :card_id
             };
+            var target;
 
             //trovare origine di carta
-            var origin = 
-            var target = location_destination;
-           moveCard(card,origin,target)
+            var origin = "null";
+            if(this.isCurrentPlayerActive()) {
+                target = 'opponent_'+location_destination + '_'+ index
+            }
+            else {
+                target = 'my:'+location_destination + '_'+ index
+
+            }
+           moveCard(card,origin,target);
 
        }
    });             

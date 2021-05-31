@@ -28,13 +28,28 @@
 <div id="opponent_table" class="whiteblock personal_area">
     <h3 id="opponent_name"></h3>
     <!--div class="card"></div-->
-        <div id="opponent_red"></div>
-        <div id="opponent_blue"></div>
-        <div id="opponent_green"></div>
-        <div id="opponent_yellow"></div>
-        <div id="opponent_time"></div>
-        <div id="opponent_dust"></div>
-        <div id="opponent_golems"></div>
+        <div id="opponent_red">
+            <div id="opponent_red_1"></div>
+        </div>
+        <div id="opponent_blue">
+            <div id="opponent_blue_1"></div>
+        </div>
+        <div id="opponent_green">
+            <div id="opponent_green_1"></div>
+        </div>
+        <div id="opponent_yellow">
+            <div id="opponent_yellow_1"></div>
+        </div>
+        <div id="opponent_time">
+            <div id="opponent_time_1"></div>
+        </div>
+        <div id="opponent_gemdust">
+            <div id="opponent_gemdust_1"></div>
+        </div>
+        <div id="opponent_golem">
+            <div id="opponent_golem_1"></div>
+            <div id="opponent_golemdiscard_1"></div>
+        </div>
 </div>
 <div class="shared_area">
 
@@ -82,13 +97,28 @@
     <h3="my_name"></h3>
     <div id="mytable">
         <!--div class="card"></div-->
-        <div id="my_red"></div>
-        <div id="my_blue"></div>
-        <div id="my_green"></div>
-        <div id="my_yellow"></div>
-        <div id="my_time"></div>
-        <div id="my_dust"></div>
-        <div id="my_golems"></div>
+        <div id="my_red">
+            <div id="my_red_1"></div>
+        </div>
+        <div id="my_blue">
+            <div id="my_blue_1"></div>
+        </div>
+        <div id="my_green">
+            <div id="my_green_1"></div>
+        </div>
+        <div id="my_yellow">
+            <div id="my_yellow_1"></div>
+        </div>
+        <div id="my_time">
+            <div id="my_time_1"></div>
+        </div>
+        <div id="my_gemdust">
+            <div id="my_gemdust_1"></div>
+        </div>
+        <div id="my_golem">
+            <div id="my_golem_1"></div>
+            <div id="my_golemdiscard_1"></div>
+        </div>
     </div>
 </div>
 
