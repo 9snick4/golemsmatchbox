@@ -482,13 +482,13 @@ function (dojo, declare) {
             //trovare origine di carta
             var origin = "null";
             if(this.isCurrentPlayerActive()) {
-                target = 'opponent_'+location_destination + '_'+ index
+                target = 'my_'+location_destination + '_'+ index
             }
             else {
-                target = 'my:'+location_destination + '_'+ index
+                target = 'opponent_'+location_destination + '_'+ index
 
             }
-           moveCard(card,origin,target);
+           this.moveCard(card,origin,target);
 
        }
    });             
