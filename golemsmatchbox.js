@@ -438,6 +438,7 @@ function (dojo, declare) {
         setupNotifications: function()
         {
             dojo.subscribe('cardTaken', this, "notif_cardTaken");
+            dojo.subscribe('placeGems', this, "notif_placeGems");
 
             // TODO: here, associate your game notifications with local methods
             
@@ -468,6 +469,19 @@ function (dojo, declare) {
         },    
         
         */
+        notif_placeGems: function(notif) {
+            var player_id = notif.args.player_id;
+            var location_origin = notif.args.location_origin;
+            var cards = notif.args.cards;
+            var gemId = notif.args.gems_on_table;
+            for ( var card of cards) {
+                var id = card.id;
+                //TODO origin player square?
+                this.moveGem(gemId, '','faceupcard_'+id);
+            }
+
+        },
+
        notif_cardTaken: function(notif) {
 
            var card_id = notif.args.card_id;

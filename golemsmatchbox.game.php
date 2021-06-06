@@ -34,6 +34,7 @@ class GolemsMatchbox extends Table
         self::initGameStateLabels( array( 
                "first_player" => 10,
                "available_gems" => 11,
+               "gems_on_table" => 12,
             //      ...
             //    "my_first_game_variant" => 100,
             //    "my_second_game_variant" => 101,
@@ -91,6 +92,7 @@ class GolemsMatchbox extends Table
         $player_order = self::getNextPlayerTable();
         self::setGameStateInitialValue( 'first_player', $player_order[0] );
         self::setGameStateInitialValue( 'available_gems', $this->game_gems );
+        self::setGameStateInitialValue( 'gems_on_table', $this->game_gems );
         
         //Giving gems to each player
         $sql = "UPDATE player SET player_gems = ".$this->starting_gems;
@@ -98,6 +100,7 @@ class GolemsMatchbox extends Table
         $remaining_gems = $this->game_gems - ($this->starting_gems * count($players));
 
         self::setGameStateValue( 'available_gems', $remaining_gems);
+        self::setGameStateValue( 'gems_on_table', $remaining_gems);
         
         //create deck AND get starting cards
         //get all starting rune cards
@@ -416,6 +419,10 @@ class GolemsMatchbox extends Table
         $card_order = count( $this->cards->getCardsInLocation( strtolower( $location_destination ) ) ) + 1;
         $location_arg = $player_id;
         // $this->cards->moveCard( $card_id , $location_destination, $location_arg );
+        $sql = "SELECT card_location FROM card WHERE card_id='$card_id'";
+        $location_origin = self::getUniqueValueFromDB($sql);
+
+
         $sql = "UPDATE card SET card_location='$location_destination', card_location_arg=$location_arg, card_location_position=$card_order WHERE card_id='$card_id' ";
         self::DbQuery( $sql );
         //pay or get gems
@@ -426,13 +433,48 @@ class GolemsMatchbox extends Table
         $gems = $player['gems'] - $card_cost_or_income;
         $sql = "UPDATE player SET player_gems = $gems WHERE player_id=".$player_id;
         self::dbQuery($sql);
+        
+        $cards_location_origin = $this->cards->getCardsInLocation( $location_origin );
+        $count_cards_location_origin = count($cards_location_origin);
 
-        // $game_gems = self::getGameStateValue('available_gems');
-        // $game_gems += $card_cost_or_income;
-        // self::setGameStateValue('available_gems' , $game_gems);
+        $gems_on_table = self::getGameStateValue('gems_on_table');
 
+        if($count_cards_location_origin == 2) {
+            self::notifyAllPlayers("placeGems", clienttranslate('${player_name} places two gems'), array(
+                'player_id' => $player_id,
+                'player_name' => self::getActivePlayerName(),
+                'cards' => $cards_location_origin,
+                'player_gems' => $gems,
+                'gems_on_table' => $gems_on_table,
+                'location_origin' => $location_origin
+            ));
+            self::setGameStateValue('gems_on_table', $gems_on_table+2);
 
-        self::notifyAllPlayers( "cardTaken", clienttranslate( '${player_name} takes a card' ), array(
+        } 
+        
+        else if($count_cards_location_origin == 1){
+            self::notifyAllPlayers("moveGems", clienttranslate('${player_name} moves two gems'), array(
+                'player_id' => $player_id,
+                'player_name' => self::getActivePlayerName(),
+                'cards' => $cards_location_origin,
+                'player_gems' => $gems,
+                'location_origin' => $location_origin
+            ));
+
+        }
+        
+        else if($count_cards_location_origin == 0){
+            self::notifyAllPlayers("takeGems", clienttranslate('${player_name} takes two gems'), array(
+                'player_id' => $player_id,
+                'player_name' => self::getActivePlayerName(),
+                'player_gems' => $gems,
+                'location_origin' => $location_origin
+            ));
+            self::setGameStateValue('gems_on_table', $gems_on_table-2);
+
+        }
+
+        self::notifyAllPlayers( "cardTaken", clienttranslate( '${player_name} takes a '.$location_destination.' card' ), array(
             'player_id' => $player_id,
             'player_name' => self::getActivePlayerName(),
             'card_id' => $card_id,
