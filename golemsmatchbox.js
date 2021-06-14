@@ -341,7 +341,7 @@ function (dojo, declare) {
             // dojo.query('#'+id).connect('onclick', this, 'onEnergyMaya'); 
         },
 
-        moveGem: function(gem_id, origin, target) {
+        moveGem: function(gem_id, origin, target, bottomright = false) {
             if(origin == null) {
                 origin = 'golem_deck';
             }
@@ -352,9 +352,14 @@ function (dojo, declare) {
                      num: gem_id % 3}), $(origin));
             }
 
-            
+            var x = 0;
+            var y = 0;
+            if(bottomright) {
+                x = 50;
+                y = 50;
+            }
             this.attachToNewParent(id, target);
-            this.slideToObjectPos(id, target, 0, 0, 50, 50).play();
+            this.slideToObjectPos(id, target, x, y, 50, 50).play();
         },
 
         ///////////////////////////////////////////////////
@@ -439,6 +444,7 @@ function (dojo, declare) {
         {
             dojo.subscribe('cardTaken', this, "notif_cardTaken");
             dojo.subscribe('placeGems', this, "notif_placeGems");
+            dojo.subscribe('moveGems', this, "notif_moveGems");
 
             // TODO: here, associate your game notifications with local methods
             
@@ -474,10 +480,29 @@ function (dojo, declare) {
             var location_origin = notif.args.location_origin;
             var cards = notif.args.cards;
             var gemId = notif.args.gems_on_table;
-            for ( var card of cards) {
-                var id = card.id;
+            for ( var prop in cards) {
+                var id = cards[prop].id;
                 //TODO origin player square?
-                this.moveGem(gemId, '','faceupcard_'+id);
+                this.moveGem(gemId, null,'faceupcard_'+id);
+                gemId++;
+            }
+
+        },
+
+        notif_moveGems: function(notif) {
+            debugger;
+            var player_id = notif.args.player_id;
+            var location_origin = notif.args.location_origin;
+            var source_card = notif.args.source_card;
+            var destination_card_id = notf.args.destination_card_id;
+            for ( var prop in source_card) {
+                var id = cards[prop].id;
+                //TODO origin player square?
+                var gem =dojo.query("#faceupcard_"+id + " .gem");
+                var gemelem = gem.first();
+                var gemId = gemelem.id;
+                this.moveGem(gemId, null,'faceupcard_'+destination_card_id);
+                gemId++;
             }
 
         },

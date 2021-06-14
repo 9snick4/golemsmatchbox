@@ -456,7 +456,8 @@ class GolemsMatchbox extends Table
             self::notifyAllPlayers("moveGems", clienttranslate('${player_name} moves two gems'), array(
                 'player_id' => $player_id,
                 'player_name' => self::getActivePlayerName(),
-                'cards' => $cards_location_origin,
+                'source_card' => $cards_location_origin,
+                'destination_card_id' => $card_id,
                 'player_gems' => $gems,
                 'location_origin' => $location_origin
             ));
@@ -517,7 +518,6 @@ class GolemsMatchbox extends Table
         $valid_location = false;
         foreach($this->player_locations as $location_name => $location)
         {
-            self::dump("location_Destination", $location_destination);
 
             //if we are in the right location...
             if(!strcasecmp($location_name,$location_destination))
@@ -554,7 +554,6 @@ class GolemsMatchbox extends Table
                 $card_cost_or_income = 2;
                 break;
             case 2:
-                $card_cost_or_income = 0;
                 break;
             case 1:
                 $card_cost_or_income = -2;
@@ -563,6 +562,8 @@ class GolemsMatchbox extends Table
                 throw new BgaVisibleSystemException ("The location has <1 or >3 cards");
                 break;  
         }
+
+        self::dump("card_cost_or_income 1 ", $card_cost_or_income);
 
         //retrieve  type id
         $type_rune = 0;
@@ -599,6 +600,10 @@ class GolemsMatchbox extends Table
             throw new BgaVisibleSystemException ("Can't find type_gem");
 
         }
+        self::dump("card_material  ", $card_material);
+        self::dump("type_rune  ", $type_rune);
+        self::dump("location_destination", $location_destination);
+
 
         $card_compatble_with_location = false;
         //if you're trying to buy a rune, you need to have three more gems. Of course, if you're taking two of them before you buy the rune,
@@ -608,7 +613,10 @@ class GolemsMatchbox extends Table
             $card_compatble_with_location = true;
             $card_cost_or_income+=3;
         }
-        if(!$player['gems'] >= $card_cost_or_income)
+
+        self::dump("card_cost_or_income 2", $card_cost_or_income);
+
+        if($player['gems'] < $card_cost_or_income)
         {
             throw new BgaUserException( self::_("You do not have enough gems to take this card") );
         }

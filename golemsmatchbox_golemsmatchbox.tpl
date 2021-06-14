@@ -145,7 +145,7 @@ var jstpl_faceupcard = '<div class="card card_shadow" id="faceupcard_${card_id}"
                         </div>';
 var jstpl_facedowncard = '<div class="card_back card_shadow" id="card_${location}_${location_arg}" style="background-position:-${x}px -${y}px">\
                         </div>';
-var jstpl_gem = '<div class="gem_${num}" id="gem_${id}">\
+var jstpl_gem = '<div class="gem gem_${num}" id="gem_${id}">\
                         </div>';
 var jstpl_player_board = '\<div id=playerinfo_p${id} class="playerinfo">\
     <span id="gemsicon_p${id}" class="gem_${num} gem_icon"></span><span id="gemcount_p${id}" class="gem_counter">${gems}</span>\
