@@ -78,33 +78,90 @@ function (dojo, declare) {
             
             // TODO: Set up your game interface here, according to "gamedatas"
             
+
+            //bank gems
+            var gemIds = 0;
+            for(; gemIds < gamedatas.bank_gems; gemIds++)
+            {
+                this.moveGem(gemIds,'golem_deck', 'bank_gem_'+gemIds);
+            }
+
+
             //Setting up the 4 golem zones
             //topleft
+            var length = gamedatas.topleft.length;
+            var bottomright = false;
             for( var id in gamedatas.topleft ) {
                 var card = gamedatas.topleft[id];
                 this.moveCard(card, 'golem_deck', 'topleft_'+card.location_arg);
                 dojo.query('#faceupcard_'+card.id).connect('onclick', this, 'onFaceupCard');
+                if(length == 2)
+                {
+                    this.moveGem(gemIds, 'golem_deck', 'topleft_'+card.location_arg, bottomright);
+                    gemIds++;
+                    bottomright = !bottomright;
+                }
+                else if (length == 1) {
+                    this.moveGem(gemIds, 'golem_deck', 'topleft_'+card.location_arg);
+                    gemIds++;
+                }
             }
 
             //topright
+            var length = gamedatas.topright.length;
+            var bottomright = false;
             for( var id in gamedatas.topright ) {
                 var card = gamedatas.topright[id];
                 this.moveCard(card, 'golem_deck', 'topright_'+card.location_arg);
                 dojo.query('#faceupcard_'+card.id).connect('onclick', this, 'onFaceupCard');
+                if(length == 2)
+                {
+                    this.moveGem(gemIds, 'golem_deck', 'topright_'+card.location_arg, bottomright);
+                    gemIds++;
+                    bottomright = !bottomright;
+                }
+                else if (length == 1) {
+                    this.moveGem(gemIds, 'golem_deck', 'topright_'+card.location_arg);
+                    gemIds++;
+                }
             }
 
             //bottomleft
+            var length = gamedatas.bottomleft.length;
+            var bottomright = false;
             for( var id in gamedatas.bottomleft ) {
                 var card = gamedatas.bottomleft[id];
                 this.moveCard(card, 'golem_deck', 'bottomleft_'+card.location_arg);
                 dojo.query('#faceupcard_'+card.id).connect('onclick', this, 'onFaceupCard');
+                if(length == 2)
+                {
+                    this.moveGem(gemIds, 'golem_deck', 'bottomleft_'+card.location_arg, bottomright);
+                    gemIds++;
+                    bottomright = !bottomright;
+                }
+                else if (length == 1) {
+                    this.moveGem(gemIds, 'golem_deck', 'bottomleft_'+card.location_arg);
+                    gemIds++;
+                }
             }
 
             //bottomright
+            var length = gamedatas.bottomright.length;
+            var bottomright = false;
             for( var id in gamedatas.bottomright ) {
                 var card = gamedatas.bottomright[id];
                 this.moveCard(card, 'golem_deck', 'bottomright_'+card.location_arg);
                 dojo.query('#faceupcard_'+card.id).connect('onclick', this, 'onFaceupCard');
+                if(length == 2)
+                {
+                    this.moveGem(gemIds, 'golem_deck', 'bottomright_'+card.location_arg, bottomright);
+                    gemIds++;
+                    bottomright = !bottomright;
+                }
+                else if (length == 1) {
+                    this.moveGem(gemIds, 'golem_deck', 'bottomright_'+card.location_arg);
+                    gemIds++;
+                }
             }
 
             // Player hand
@@ -121,12 +178,6 @@ function (dojo, declare) {
                 this.moveCard(card, 'golem_deck', 'my_hand_'+hand_id);
                 hand_id++;
                 // dojo.query('#faceup_card_'+card.card_id).connect('onclick', this, 'onFaceupCard');
-            }
-
-            //bank gems
-            for(var i = 0; i < gamedatas.bank_gems; i++)
-            {
-                this.moveGem(i,'golem_deck', 'bank_gem_'+i);
             }
 
 
@@ -445,6 +496,7 @@ function (dojo, declare) {
             dojo.subscribe('cardTaken', this, "notif_cardTaken");
             dojo.subscribe('placeGems', this, "notif_placeGems");
             dojo.subscribe('moveGems', this, "notif_moveGems");
+            dojo.subscribe('refreshTable', this, "notif_refreshTable");
 
             // TODO: here, associate your game notifications with local methods
             
@@ -529,6 +581,29 @@ function (dojo, declare) {
             }
            this.moveCard(card,origin,target);
 
-       }
+       },
+       
+       notif_refreshTable: function(notif) {
+        var location = notif.args.location;
+        var new_cards = notif.args.new_cards;
+
+        for( var id in new_cards ) {
+            var card = new_cards[id];
+            this.moveCard(card, 'golem_deck', location+'_'+card.location_arg);
+            dojo.query('#faceupcard_'+card.id).connect('onclick', this, 'onFaceupCard');
+            // if(length == 2)
+            // {
+            //     this.moveGem(gemIds, 'golem_deck', 'topright_'+card.location_arg, bottomright);
+            //     gemIds++;
+            //     bottomright = !bottomright;
+            // }
+            // else if (length == 1) {
+            //     this.moveGem(gemIds, 'golem_deck', 'topright_'+card.location_arg);
+            //     gemIds++;
+            // }
+        }
+
+
+    },
    });             
 });
