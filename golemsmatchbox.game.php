@@ -484,7 +484,27 @@ class GolemsMatchbox extends Table
             'index' => $card_order
         ) );
         //Todo NEXT STATE
-    }   
+
+        //no more cards? refresh location
+        if($this->cards->countCardInLocation( $location_origin) == 0) {
+            $this->refreshLocation($location_origin);
+        }
+    }
+    
+    function refreshLocation($location) 
+    {
+
+        $this->cards->pickCardForLocation( 'deck', $location, 1 );
+        $this->cards->pickCardForLocation( 'deck', $location, 2 );
+        $this->cards->pickCardForLocation( 'deck', $location, 3 );
+
+        $new_cards = $this->cards->getCardsInLocation( 'topleft' );
+
+        self::notifyAllPlayers("refreshTable", clienttranslate('${player_name} takes two gems'), array(
+            'location' => $location,
+            'new_cards' => $new_cards
+        ));
+    }
     //////////////////////////////////////////////////////////////////////////////
     //////////// Action Validations
     //////////// 
@@ -495,6 +515,7 @@ class GolemsMatchbox extends Table
     */
     function canTakeCard( $card_id, $location_destination) 
     {
+        
         $player_id = self::getActivePlayerId();
 
         $location_destination = strtolower($location_destination);
@@ -724,6 +745,8 @@ class GolemsMatchbox extends Table
         return $card_cost_or_income;
     }
     
+    
+
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state arguments
 ////////////
