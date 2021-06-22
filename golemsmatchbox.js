@@ -530,12 +530,8 @@ function (dojo, declare) {
             dojo.subscribe('cardTaken', this, "notif_cardTaken");
             dojo.subscribe('placeGems', this, "notif_placeGems");
             dojo.subscribe('moveGems', this, "notif_moveGems");
-<<<<<<< HEAD
             dojo.subscribe('takeGems', this, "notif_takeGems");
-            dojo.subscribe('locationReplenished', this, "notif_locationReplenished");
-=======
             dojo.subscribe('refreshTable', this, "notif_refreshTable");
->>>>>>> 1e264750027c500067b9f5b35ca8633313d45a30
 
             // TODO: here, associate your game notifications with local methods
             
