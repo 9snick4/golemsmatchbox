@@ -304,6 +304,40 @@ function (dojo, declare) {
         // getCardPosition : function(cardId) {
         //     return (color - 1) * rowLength + (value - 2);
         // },
+
+        getCounter: function(player_id, counter) {
+            return $(counter+'_'+player_id).innerHTML;
+        },
+
+        updateCounter: function(player_id, counter, value) {
+            $(counter+'_'+player_id).innerHTML = value;
+        },
+
+        increaseCounter: function(player_id, counter, value) {
+            var counterId = "";
+            switch (counter) {
+                case "gem":
+                case "gems":
+                    counterId = "gemcount";
+                    break;
+                case "card":
+                case "cards":
+                    counterId = "handcount";
+                    break;
+                default:
+                    counterId = counter;
+            }
+            
+            var currVal = parseInt(this.getCounter);
+            this.updateCounter(player_id, counterId, currVal + value);
+
+        },
+
+        decreaseCounter: function (player_id, counter, value) {
+            var negativeValue = 0 - value;
+            this.increaseCounter(player_id,counter,value);
+        },
+
         isHidden: function() 
         {
             return true;
@@ -445,6 +479,8 @@ function (dojo, declare) {
             dojo.subscribe('cardTaken', this, "notif_cardTaken");
             dojo.subscribe('placeGems', this, "notif_placeGems");
             dojo.subscribe('moveGems', this, "notif_moveGems");
+            dojo.subscribe('takeGems', this, "notif_takeGems");
+            dojo.subscribe('locationReplenished', this, "notif_locationReplenished");
 
             // TODO: here, associate your game notifications with local methods
             
@@ -475,6 +511,8 @@ function (dojo, declare) {
         },    
         
         */
+
+        
         notif_placeGems: function(notif) {
             var player_id = notif.args.player_id;
             var location_origin = notif.args.location_origin;
@@ -486,11 +524,11 @@ function (dojo, declare) {
                 this.moveGem(gemId, null,'faceupcard_'+id);
                 gemId++;
             }
+            this.decreaseCounter(player_id, 'gem', 2);
 
         },
 
         notif_moveGems: function(notif) {
-            debugger;
             var player_id = notif.args.player_id;
             var location_origin = notif.args.location_origin;
             var source_card = notif.args.source_card;
@@ -505,6 +543,22 @@ function (dojo, declare) {
                 gemId++;
             }
 
+        },
+
+        notif_takeGems: function(notif) {
+            var player_id = notif.args.player_id;
+            var source_card = notif.args.source_card;
+            for ( var prop in source_card) {
+                var id = cards[prop].id;
+                //TODO origin player square?
+                var gem =dojo.query("#faceupcard_"+id + " .gem");
+                var gemelem = gem.first();
+                var gemId = gemelem.id;
+                this.moveGem(gemId, null,'playerinfo_p'+player_id);
+                dojo.query('#playerinfo_p'+player_id + " .gem").forEach(dojo.destroy);
+                gemId++;
+            }
+            this.increaseCounter(player_id, 'gem', 2);
         },
 
        notif_cardTaken: function(notif) {

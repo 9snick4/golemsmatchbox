@@ -600,9 +600,6 @@ class GolemsMatchbox extends Table
             throw new BgaVisibleSystemException ("Can't find type_gem");
 
         }
-        self::dump("card_material  ", $card_material);
-        self::dump("type_rune  ", $type_rune);
-        self::dump("location_destination", $location_destination);
 
 
         $card_compatble_with_location = false;
