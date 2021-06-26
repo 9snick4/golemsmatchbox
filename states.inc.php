@@ -70,15 +70,15 @@ $machinestates = array(
             "args" => "argsChooseCard",
     		"type" => "activeplayer",
     		"possibleactions" => array( "takeCard", "pass" ),
-    		"transitions" => array( "chooseOrientation" => 3, "pass" => 4 )
+    		"transitions" => array( "chooseDiscards" => 3,  "pass" => 4, "applyCard" => 4 )
     ),
 
     3 => array(
-    		"name" => "chooseOrientation",
-    		"description" => clienttranslate('${actplayer} must choose the orientation of the chosen card'),
-    		"descriptionmyturn" => clienttranslate('${you} must choose the orientation of the chosen card'),
+    		"name" => "chooseDiscards",
+    		"description" => clienttranslate('${actplayer} must choose which cards to discard'),
+    		"descriptionmyturn" => clienttranslate('${you} must choose which cards to discard'),
     		"type" => "activeplayer",
-    		"possibleactions" => array( "topOfCard", "bottomOfCard","undo" ),
+    		"possibleactions" => array( "discardCards", "undo" ),
     		"transitions" => array( "chooseCard" => 2, "applyCard" => 4 )
     ),
 

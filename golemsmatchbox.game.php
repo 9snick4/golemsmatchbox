@@ -281,6 +281,22 @@ class GolemsMatchbox extends Table
     /*
         In this space, you can put any utility methods useful for your game logic
     */
+    function whereIsRefillNeeded() {
+        if($this->cards->countCardsInLocation('topleft') == 0) 
+            return 'topleft';
+            
+        if($this->cards->countCardsInLocation('topright') == 0) 
+        return 'topright';
+        
+        if($this->cards->countCardsInLocation('bottomleft') == 0) 
+            return 'bottomleft';
+            
+        if($this->cards->countCardsInLocation('bottomright') == 0) 
+        return 'bottomright';
+
+        return "no";
+    }
+
     //receives a deck card and an array of strings (locations)
     //returns true if card has one of the location as his own
     function isCardInLocations($card, $locations) 
@@ -483,17 +499,13 @@ class GolemsMatchbox extends Table
             'location_destination' => $location_destination,
             'index' => $card_order
         ) );
-        //Todo NEXT STATE
 
-        //no more cards? refresh location
-        if($this->cards->countCardInLocation( $location_origin) == 0) {
-            $this->refreshLocation($location_origin);
-        }
+        $this->gamestate->nextState('applyCard');
+
     }
     
     function refreshLocation($location) 
     {
-
         $this->cards->pickCardForLocation( 'deck', $location, 1 );
         $this->cards->pickCardForLocation( 'deck', $location, 2 );
         $this->cards->pickCardForLocation( 'deck', $location, 3 );
@@ -513,7 +525,8 @@ class GolemsMatchbox extends Table
         Each time an action is called, before perforing the action, these validations methods are called.
 
     */
-    function canTakeCard( $card_id, $location_destination) 
+    function canTakeCard( $card_id, $location_destinati
+    on) 
     {
         
         $player_id = self::getActivePlayerId();
@@ -805,6 +818,40 @@ class GolemsMatchbox extends Table
         $this->gamestate->nextState( 'some_gamestate_transition' );
     }    
     */
+    function stApplyCard() {
+        $this->gamestate->nextState('isGameEnd');
+
+    }
+
+    function stIsGameEnd() {
+        $player_id = self::getActivePlayerId();  
+        
+        
+        //no more cards? refresh location
+        $refill = $this->whereIsRefillNeeded();
+        if($refill != 'no') {
+            $this->refreshLocation($refill);
+        }
+        
+        
+        //it's the endgame - deck is over
+        if($this->cards->coundCardInLocation('deck') <= 0) {
+            $players = $this->getPlayersBasicInfo();
+            //current player is player 2 - no more turns
+            if($players[$player_id]['player_no'] > 1) {
+                $this->gamestate->nextState('gameEnd');
+            }
+            //it's the last turn - let's tell everyone
+            else {
+                //TODO log last turn
+            }
+        }
+        //it's not the end game
+
+        $player_id = self::activeNextPlayer();
+        $this->gamestate->nextState('chooseCard');
+
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Zombie

@@ -30,21 +30,51 @@
     <!--div class="card"></div-->
         <div id="opponent_red">
             <div id="opponent_Red_1"></div>
+            <div id="opponent_Red_2"></div>
+            <div id="opponent_Red_3"></div>
+            <div id="opponent_Red_4"></div>
+            <div id="opponent_Red_5"></div>
+            <div id="opponent_Red_6"></div>
         </div>
         <div id="opponent_blue">
             <div id="opponent_Blue_1"></div>
+            <div id="opponent_Blue_2"></div>
+            <div id="opponent_Blue_3"></div>
+            <div id="opponent_Blue_4"></div>
+            <div id="opponent_Blue_5"></div>
+            <div id="opponent_Blue_6"></div>
         </div>
         <div id="opponent_green">
             <div id="opponent_Green_1"></div>
+            <div id="opponent_Green_2"></div>
+            <div id="opponent_Green_3"></div>
+            <div id="opponent_Green_4"></div>
+            <div id="opponent_Green_5"></div>
+            <div id="opponent_Green_6"></div>
         </div>
         <div id="opponent_yellow">
             <div id="opponent_Yellow_1"></div>
+            <div id="opponent_Yellow_2"></div>
+            <div id="opponent_Yellow_3"></div>
+            <div id="opponent_Yellow_4"></div>
+            <div id="opponent_Yellow_5"></div>
+            <div id="opponent_Yellow_6"></div>
         </div>
         <div id="opponent_time">
             <div id="opponent_Time_1"></div>
+            <div id="opponent_Time_2"></div>
+            <div id="opponent_Time_3"></div>
+            <div id="opponent_Time_4"></div>
+            <div id="opponent_Time_5"></div>
+            <div id="opponent_Time_6"></div>
         </div>
         <div id="opponent_gemdust">
             <div id="opponent_Gemdust_1"></div>
+            <div id="opponent_Gemdust_2"></div>
+            <div id="opponent_Gemdust_3"></div>
+            <div id="opponent_Gemdust_4"></div>
+            <div id="opponent_Gemdust_5"></div>
+            <div id="opponent_Gemdust_6"></div>
         </div>
         <div id="opponent_golem">
             <div id="opponent_Golem_1"></div>
@@ -99,21 +129,51 @@
         <!--div class="card"></div-->
         <div id="my_red">
             <div id="my_Red_1"></div>
+            <div id="my_Red_2"></div>
+            <div id="my_Red_3"></div>
+            <div id="my_Red_4"></div>
+            <div id="my_Red_5"></div>
+            <div id="my_Red_6"></div>
         </div>
         <div id="my_blue">
             <div id="my_Blue_1"></div>
+            <div id="my_Blue_1"></div>
+            <div id="my_Blue_3"></div>
+            <div id="my_Blue_4"></div>
+            <div id="my_Blue_5"></div>
+            <div id="my_Blue_6"></div>
         </div>
         <div id="my_green">
             <div id="my_Green_1"></div>
+            <div id="my_Green_2"></div>
+            <div id="my_Green_3"></div>
+            <div id="my_Green_4"></div>
+            <div id="my_Green_5"></div>
+            <div id="my_Green_6"></div>
         </div>
         <div id="my_yellow">
             <div id="my_Yellow_1"></div>
+            <div id="my_Yellow_2"></div>
+            <div id="my_Yellow_3"></div>
+            <div id="my_Yellow_4"></div>
+            <div id="my_Yellow_5"></div>
+            <div id="my_Yellow_6"></div>
         </div>
         <div id="my_time">
             <div id="my_Time_1"></div>
+            <div id="my_Time_2"></div>
+            <div id="my_Time_3"></div>
+            <div id="my_Time_4"></div>
+            <div id="my_Time_5"></div>
+            <div id="my_Time_6"></div>
         </div>
         <div id="my_gemdust">
             <div id="my_Gemdust_1"></div>
+            <div id="my_Gemdust_2"></div>
+            <div id="my_Gemdust_3"></div>
+            <div id="my_Gemdust_4"></div>
+            <div id="my_Gemdust_5"></div>
+            <div id="my_Gemdust_6"></div>
         </div>
         <div id="my_golem">
             <div id="my_Golem_1"></div>
