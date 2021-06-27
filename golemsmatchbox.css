@@ -47,6 +47,63 @@
 
 
 /********* You can start writing your CSS below this line: **********/
+.one {
+    z-index: 10;
+    top:0px;
+}
+
+.two {
+    z-index: 20;
+    top:20px;
+}
+
+.three {
+    z-index: 30;
+    top:40px;
+}
+
+.four {
+    z-index: 40;
+    top:60px;
+}
+
+.five {
+    z-index: 50;
+    top:80px;
+}
+
+.six {
+    z-index: 60;
+    top:100px;
+}
+
+.time {
+    left: 0px; 
+}
+
+.blue {
+    left: 101px; 
+}
+
+.green {
+    left: 202px; 
+}
+
+.red {
+    left: 303px; 
+}
+
+.yellow {
+    left: 404px; 
+}
+
+.golem {
+    left: 505px; 
+}
+
+.gemdust {
+    left: 606px; 
+}
 .gem_0 {
 position: absolute;
 width: 36px;

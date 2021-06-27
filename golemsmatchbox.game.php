@@ -525,8 +525,7 @@ class GolemsMatchbox extends Table
         Each time an action is called, before perforing the action, these validations methods are called.
 
     */
-    function canTakeCard( $card_id, $location_destinati
-    on) 
+    function canTakeCard( $card_id, $location_destination) 
     {
         
         $player_id = self::getActivePlayerId();
@@ -823,7 +822,7 @@ class GolemsMatchbox extends Table
 
     }
 
-    function stIsGameEnd() {
+    function stIsEndGame() {
         $player_id = self::getActivePlayerId();  
         
         
@@ -835,7 +834,7 @@ class GolemsMatchbox extends Table
         
         
         //it's the endgame - deck is over
-        if($this->cards->coundCardInLocation('deck') <= 0) {
+        if($this->cards->countCardInLocation('deck') <= 0) {
             $players = $this->getPlayersBasicInfo();
             //current player is player 2 - no more turns
             if($players[$player_id]['player_no'] > 1) {

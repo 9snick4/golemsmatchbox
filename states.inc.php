@@ -87,7 +87,7 @@ $machinestates = array(
     		"type" => "game",
             "action" => "stApplyCard",        
             "updateGameProgression" => true,   
-    		"transitions" => array( "isEndGame" => 5 )
+    		"transitions" => array( "isGameEnd" => 5 )
     ),
 
     5 => array(

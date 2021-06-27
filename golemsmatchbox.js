@@ -357,11 +357,11 @@ function (dojo, declare) {
         // },
 
         getCounter: function(player_id, counter) {
-            return $(counter+'_'+player_id).innerHTML;
+            return $(counter+'_p'+player_id).innerHTML;
         },
 
         updateCounter: function(player_id, counter, value) {
-            $(counter+'_'+player_id).innerHTML = value;
+            $(counter+'_p'+player_id).innerHTML = value;
         },
 
         increaseCounter: function(player_id, counter, value) {
@@ -379,14 +379,15 @@ function (dojo, declare) {
                     counterId = counter;
             }
             
-            var currVal = parseInt(this.getCounter);
+            var currVal = parseInt(this.getCounter(player_id,counterId));
             this.updateCounter(player_id, counterId, currVal + value);
 
         },
 
         decreaseCounter: function (player_id, counter, value) {
+            debugger;
             var negativeValue = 0 - value;
-            this.increaseCounter(player_id,counter,value);
+            this.increaseCounter(player_id,counter,negativeValue);
         },
 
         isHidden: function() 
@@ -583,9 +584,9 @@ function (dojo, declare) {
             var player_id = notif.args.player_id;
             var location_origin = notif.args.location_origin;
             var source_card = notif.args.source_card;
-            var destination_card_id = notf.args.destination_card_id;
+            var destination_card_id = notif.args.destination_card_id;
             for ( var prop in source_card) {
-                var id = cards[prop].id;
+                var id = source_card[prop].id;
                 //TODO origin player square?
                 var gem =dojo.query("#faceupcard_"+id + " .gem");
                 var gemelem = gem.first();
@@ -626,10 +627,10 @@ function (dojo, declare) {
             //trovare origine di carta
             var origin = "null";
             if(this.isCurrentPlayerActive()) {
-                target = 'my_'+location_destination + '_'+ index
+                target = 'my_'+location_destination + '_'+ index;
             }
             else {
-                target = 'opponent_'+location_destination + '_'+ index
+                target = 'opponent_'+location_destination + '_'+ index;
 
             }
            this.moveCard(card,origin,target);
